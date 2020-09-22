@@ -17,11 +17,11 @@ public class ConfigExample {
 
 	public static void main(String[] args) throws NacosException, InterruptedException {
 		String serverAddr = "localhost";
-		String dataId = "application1";
+		String dataId = "application1.yaml";
 		String group = "XIAOWEI_MICROSERVICE_GROUP";
 		Properties properties = new Properties();
 		properties.put(PropertyKeyConst.SERVER_ADDR, serverAddr);
-		properties.put(PropertyKeyConst.NAMESPACE, "7008d857-20e9-4bc6-a443-8ccdbb7f54d6");
+		properties.put(PropertyKeyConst.NAMESPACE, "123456");
 		ConfigService configService = NacosFactory.createConfigService(properties);
 		String content = configService.getConfig(dataId, group, 5000);
 		System.out.println(content);

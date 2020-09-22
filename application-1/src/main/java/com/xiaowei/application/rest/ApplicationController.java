@@ -33,7 +33,7 @@ public class ApplicationController {
     
     @GetMapping("getConfig")
     public String getConfig() {
-    	String userName=ct.getEnvironment().getProperty("user.age");
-    	return "user.age="+userName;
+    	String name=ct.getEnvironment().getProperty("common.name");
+    	return "common.name="+name;
     }
 }
