@@ -1,11 +1,12 @@
 package com.xiaowei.application.rest;
 
-import com.xiaowei.service1.api.ConsumerService;
-import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.xiaowei.service1.api.ConsumerService;
 
 /**
  * Created with IntelliJ IDEA.
@@ -20,10 +21,19 @@ public class ApplicationController {
 
     @org.apache.dubbo.config.annotation.Reference
     private ConsumerService consumerService;
+    
+    @Autowired
+    private ConfigurableApplicationContext ct;
 
     @GetMapping
     String service(){
         String target=consumerService.service();
         return "application-1|test|"+target;
+    }
+    
+    @GetMapping("getConfig")
+    public String getConfig() {
+    	String userName=ct.getEnvironment().getProperty("user.age");
+    	return "user.age="+userName;
     }
 }
